@@ -1,0 +1,43 @@
+version: '3'
+services:
+  vue:
+    build:
+      context: .
+      dockerfile: _docker/Dockerfile
+    volumes:
+      - ./:/app
+    container_name: telegram_my_subscriptions
+    restart: on-failure
+    command: 'pnpm run dev'
+    ports:
+      - 3001:3000
+      - 4001:4000
+    networks:
+      telegram_net:
+        ipv4_address: 172.26.0.3
+
+  ngrok:
+    image: 'ngrok/ngrok:alpine'
+    environment:
+      NGROK_AUTHTOKEN: '${NGROK_AUTHTOKEN}'
+    command: 'http --host-header=rewrite vue:4000'
+    # command: 'http --host-header=rewrite https://localhost:4001'
+    depends_on:
+      - vue
+    ports:
+      - '4040:4040'
+    networks:
+      telegram_net:
+        ipv4_address: 172.26.0.4
+
+networks:
+  telegram_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: "172.26.0.0/24"
+    driver_opts:
+      com.docker.network.bridge.name: telegram_net
+
+

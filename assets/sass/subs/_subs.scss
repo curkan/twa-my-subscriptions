@@ -1,0 +1,92 @@
+.subs {
+  color: #282828;
+  margin-top: 10px;
+  background-color: #EFEEF4;
+  display: grid;
+  gap: 15px;
+  grid-template-columns: 100%;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+
+    &-create {
+      width: 30px;
+      height: 30px;
+      background: url('~/assets/icons/plus-white.svg') no-repeat center;
+      background-color: #1A70FE;
+      fill: #fff;
+      border-radius: 20px;
+    }
+  }
+
+  &__wallet {
+    padding: 15px;
+    background: linear-gradient(36.28deg, #1A70FE 0%, #5699FF 100%);
+    border-radius: 10px;
+    color: #fff;
+
+    &-title {
+      color: #BCD6FF;
+    }
+
+    &-amount {
+      font-size: 32px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  }
+
+  &__content {
+    /* display: grid; */
+    /* gap: 10px; */
+
+    &-item {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+
+      &-controls {
+        background-color: #fff;
+        display: flex;
+        justify-content: right;
+        border-radius: 10px;
+        padding: 15px;
+        height: 80px;
+        gap: 10px;
+
+        &-btn {
+          background-color: #1A70FE;
+          border-radius: 5px;
+          color: #fff;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 10px;
+          cursor: pointer;
+        }
+
+      }
+
+
+      &-img {
+        flex-basis: 5%;
+        min-width: 50px;
+        margin-right: 10px;
+      }
+
+      &-wrapper {
+        flex-basis: 60%;
+      }
+
+      &-amount {
+        flex-basis: 25%;
+      }
+    }
+  }
+
+}
