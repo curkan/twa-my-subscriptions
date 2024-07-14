@@ -1,22 +1,11 @@
 <script lang="ts" setup>
-import { ExpandedViewport, MainButton, useWebApp, useWebAppBackButton, useWebAppPopup, useWebAppTheme, useWebAppViewport } from 'vue-tg'
+import { MainButton } from 'vue-tg'
 
-const { showAlert } = useWebAppPopup() as { showAlert: (message: string) => void };
-const { showBackButton } = 	useWebAppBackButton();
-
-const routeToCreate = () => {
-    showBackButton()
-    return navigateTo('/create')
-}
+// const { showAlert } = useWebAppPopup() as { showAlert: (message: string) => void };
 </script>
 
 <template>
-    <ExpandedViewport :force="true" />
     <div class="subs">
-        <div class="subs__header">
-            <h2>Мои подписки</h2>
-            <div class="subs__header-create" @click="routeToCreate"></div>
-        </div>
         <div class="subs__wallet">
             <div class="subs__wallet-title">Расход в месяц</div>
             <div class="subs__wallet-amount">2.290,00 ₽</div>
@@ -53,13 +42,13 @@ const routeToCreate = () => {
         </div>
 
     </div>
-    <MainButton text="Добавить подписку" @click="() => showBackButton()" />
+    <MainButton text="Добавить подписку" @click="" />
 </template>
 
 <style lang="scss">
 @import '~/assets/sass/common/base/fonts';
 @import '~/assets/sass/common/base/base';
 @import '~/assets/sass/common/base/main';
-@import '~/assets/sass/common/base/btn';
 @import '~/assets/sass/subs/subs';
+@import '~/assets/sass/common/base/btn';
 </style>

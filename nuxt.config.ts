@@ -2,10 +2,15 @@
 export default defineNuxtConfig({
     ssr: false,
     app: {
-        pageTransition: { name: 'page', mode: 'in-out' },
-        // layoutTransition: { name: 'slide-in', mode: 'out-in' },
+        // pageTransition: { name: 'page', mode: 'out-in' },
+        // layoutTransition: { name: 'layout', mode: 'out-in' },
         head: {
-          script: [{ src: 'https://telegram.org/js/telegram-web-app.js' }],
+            script: [{ src: 'https://telegram.org/js/telegram-web-app.js' }],
+            meta: [
+                {
+                    name: 'viewport', content: 'user-scalable=no, width=device-width, initial-scale=1'
+                }
+            ],
         },
     },
     compatibilityDate: '2024-04-03',

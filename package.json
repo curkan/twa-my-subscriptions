@@ -4,12 +4,14 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
+    "start": "nuxt start",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@coders-tm/vue-number-format": "^3.34.1",
     "nuxt": "^3.12.3",
     "nuxt-swiper": "^1.2.2",
     "vue": "latest",

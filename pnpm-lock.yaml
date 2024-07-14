@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@coders-tm/vue-number-format':
+        specifier: ^3.34.1
+        version: 3.34.1
       nuxt:
         specifier: ^3.12.3
         version: 3.12.3(@parcel/watcher@2.4.1)(@types/node@20.14.10)(ioredis@5.4.1)(magicast@0.3.4)(rollup@4.18.1)(sass@1.77.8)(terser@5.31.2)(vite@5.3.3(@types/node@20.14.10)(sass@1.77.8)(terser@5.31.2))
@@ -205,6 +208,9 @@ packages:
   '@cloudflare/kv-asset-handler@0.3.4':
     resolution: {integrity: sha512-YLPHc8yASwjNkmcDMQMY35yiWjoKAKnhUbPRszBRS0YgH+IXtsMp61j+yTcnCE3oO2DgP0U3iejLC8FTtKDC8Q==}
     engines: {node: '>=16.13'}
+
+  '@coders-tm/vue-number-format@3.34.1':
+    resolution: {integrity: sha512-dUHS15GbG+VTViw6WUnwhYBvtm1FNO4hO1fvRtDWRzsjYnTl9Kp9oHdh7wINa/nMdP7/w4PEalrzUuCUCfQ+fw==}
 
   '@esbuild/aix-ppc64@0.20.2':
     resolution: {integrity: sha512-D+EBOJHXdNZcLJRBkhENNG8Wji2kgc9AZ9KiPr1JuZjsNtyHzrsfLRrY0tk2H2aoFu6RANO1y1iPPUCDYWkb5g==}
@@ -3430,6 +3436,8 @@ snapshots:
   '@cloudflare/kv-asset-handler@0.3.4':
     dependencies:
       mime: 3.0.0
+
+  '@coders-tm/vue-number-format@3.34.1': {}
 
   '@esbuild/aix-ppc64@0.20.2':
     optional: true

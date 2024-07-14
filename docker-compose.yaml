@@ -8,7 +8,7 @@ services:
       - ./:/app
     container_name: telegram_my_subscriptions
     restart: on-failure
-    command: 'pnpm run dev'
+    command: 'pnpm start'
     ports:
       - 3001:3000
       - 4001:4000
@@ -20,7 +20,7 @@ services:
     image: 'ngrok/ngrok:alpine'
     environment:
       NGROK_AUTHTOKEN: '${NGROK_AUTHTOKEN}'
-    command: 'http --host-header=rewrite vue:4000'
+    command: 'http --host-header=rewrite vue:3000'
     # command: 'http --host-header=rewrite https://localhost:4001'
     depends_on:
       - vue
