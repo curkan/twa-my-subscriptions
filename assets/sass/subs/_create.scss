@@ -42,6 +42,10 @@
           color: #fff;
           background-color: #1A70FE;
           border-radius: 5px;
+
+          &:disabled {
+            background-color: #eee;
+          }
         }
         
       }

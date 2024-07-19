@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import {useWebApp, useWebAppBackButton, useWebAppBiometricManager, useWebAppPopup} from 'vue-tg';
+import {useWebAppBackButton} from 'vue-tg';
 import {Api} from '~/composables/api/api';
 import type {Subscription} from '~/composables/subscriptions/subscriptions.type';
 
 
 const { onBackButtonClicked } = useWebAppBackButton();
-const { isBiometricAccessGranted, isBiometricAccessRequested, biometricDeviceId, authenticateBiometric } = useWebAppBiometricManager();
-const { showAlert } = useWebAppPopup();
 const { hideBackButton } = 	useWebAppBackButton();
 
 
@@ -25,6 +23,8 @@ const formData = ref<IFormData>({
     amount: 0,
     start_at: '',
 })
+
+const disabledButton = true
 
 setPageLayout('default')
 definePageMeta({
@@ -69,7 +69,11 @@ const formSubmit = async (): Promise<void | undefined> => {
                     <input type="date" v-model="formData.start_at">
                 </div>
                 <div class="subs__create-block__btn">
-                    <input type="submit" value="Добавить">
+                    <input
+                        type="submit"
+                        value="Добавить"
+                        :disabled="!formData.start_at.length || !formData.amount.length || !formData.title.length"
+                    >
                 </div>
             </div>
         </form>
