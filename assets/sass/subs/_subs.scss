@@ -38,8 +38,9 @@
   }
 
   &__content {
-    /* display: grid; */
-    /* gap: 10px; */
+    display: grid;
+    gap: 10px;
+    grid-template-columns: minmax(0, 1fr);
 
     &-item {
       background-color: #fff;

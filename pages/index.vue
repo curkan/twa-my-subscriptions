@@ -1,10 +1,13 @@
 <script setup lang="ts">
 
+definePageMeta({
+  middleware: 'auth'
+})
 </script>
 
 <template>
     <ClientOnly>
-        <MiniApps/>
+        <Subscriptions/>
     </ClientOnly>
 </template>
 

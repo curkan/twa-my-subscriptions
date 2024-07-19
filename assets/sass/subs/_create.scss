@@ -27,6 +27,24 @@
         }
 
       }
+
+      &__btn {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin: 15px 0;
+        input {
+          width: 100%;
+          padding: 15px;
+          font-family: 'Gilroy';
+          font-size: 14px;
+          font-weight: bold;
+          color: #fff;
+          background-color: #1A70FE;
+          border-radius: 5px;
+        }
+        
+      }
     }
 
   }
