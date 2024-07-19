@@ -1,22 +1,17 @@
 <script lang="ts" setup>
-import { MainButton, useWebApp, useWebAppBiometricManager, useWebAppPopup } from 'vue-tg'
+import { MainButton, useWebApp, useWebAppBackButton, useWebAppBiometricManager, useWebAppPopup } from 'vue-tg'
 import {Api} from '~/composables/api/api';
 import type {Subscription} from '~/composables/subscriptions/subscriptions.type';
 
-const { authenticateBiometric } = useWebAppBiometricManager();
-const { showAlert } = useWebAppPopup() as { showAlert: (message: string) => void };
-// const { initData } = useWebApp()
+const { showBackButton } = 	useWebAppBackButton();
 const subscriptions = ref<Subscription[] | undefined>()
 
 const initData = useState('initData')
 
 const result = await Api.get(btoa(initData.value as string), '/common/subscriptions')
-
 if (result.resp?.value) {
     const resp = result.resp as Ref<ApiResponse<Subscription[]>>
-
     subscriptions.value = resp.value.data 
-
 }
 
 const totalAmount = computed(() => {
@@ -51,9 +46,21 @@ const deleting = async (
     }
 }
 
+const routeToCreate = () => {
+    showBackButton()
+    return navigateTo('/create')
+}
+
 </script>
 
 <template>
+    <div class="subs__header">
+        <h2>Мои подписки</h2>
+        <div
+            class="subs__header-create"
+            @click="routeToCreate"
+        ></div>
+    </div>
     <div class="subs">
         <div class="subs__wallet">
             <div class="subs__wallet-title">Расход в месяц</div>
@@ -91,7 +98,7 @@ const deleting = async (
                     </SwiperSlide>
                     <SwiperSlide>
                         <div class="subs__content-item-controls">
-                            <div class="subs__content-item-controls-btn btn-edit">Редактировать</div>
+                            <!-- <div class="subs__content-item-controls-btn btn-edit">Редактировать</div> -->
                             <div 
                                 class="subs__content-item-controls-btn btn-warning"
                                 @click="deleting(subscription)"

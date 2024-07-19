@@ -9,6 +9,7 @@ const { isBiometricAccessGranted, isBiometricAccessRequested, biometricDeviceId,
 const { showAlert } = useWebAppPopup();
 const { hideBackButton } = 	useWebAppBackButton();
 
+
 const initData = useState('initData')
 
 interface IFormData {
@@ -48,6 +49,9 @@ const formSubmit = async (): Promise<void | undefined> => {
 </script>
 
 <template>
+    <div class="subs__header">
+        <h2>Создание подписки</h2>
+    </div>
     <div class="subs__create">
 
         <form id="create-form" @submit.prevent="formSubmit()">
@@ -55,10 +59,6 @@ const formSubmit = async (): Promise<void | undefined> => {
                 <div class="subs__create-block__line">
                     <label for="name">Название: </label>
                     <input id="name" v-model="formData.title" placeholder="Название подписки" />
-                </div>
-                <div class="subs__create-block__line">
-                    <label for="url">URL: </label>
-                    <input id="url" v-model="formData.url" placeholder="https://goga.zone" />
                 </div>
                 <div class="subs__create-block__line">
                     <label for="amount">Цена: </label>

@@ -18,6 +18,8 @@ export default defineNuxtConfig({
         public: {
             appUrl: process.env.APP_URL,
             backendUrl: process.env.BACKEND_URL,
+            appEnv: process.env.APP_ENV,
+            testInitData: process.env.AUTH_TEST_USER,
         }
     },
 
