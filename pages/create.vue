@@ -13,18 +13,18 @@ const initData = useState('initData')
 interface IFormData {
   title: string
   url: string
-  amount: Number
+  amount: Number|null
   start_at: string
 }
 
 const formData = ref<IFormData>({
     title: '',
     url: '',
-    amount: 0,
+    amount: null,
     start_at: '',
 })
 
-const disabledButton = true
+let disabledButton = false
 
 setPageLayout('default')
 definePageMeta({
@@ -37,14 +37,16 @@ onBackButtonClicked(() => {
 });
 
 const formSubmit = async (): Promise<void | undefined> => {
-  const result = await Api.post(formData.value, '/common/subscriptions', btoa(initData.value as string))
+    disabledButton = true
+    const result = await Api.post(formData.value, '/common/subscriptions', btoa(initData.value as string))
 
-  if (result?.error.value?.statusCode != undefined) {
-    throw new Error(result?.error.value.message)
-  } else if (result?.resp) {
-    const response = result.resp.value as ApiResponse<Subscription>
-    navigateTo('/')
-  }
+    if (result?.error.value?.statusCode != undefined) {
+        throw new Error(result?.error.value.message)
+    } else if (result?.resp) {
+        const response = result.resp.value as ApiResponse<Subscription>
+        disabledButton = false
+        navigateTo('/')
+    }
 }
 </script>
 
@@ -72,7 +74,7 @@ const formSubmit = async (): Promise<void | undefined> => {
                     <input
                         type="submit"
                         value="Добавить"
-                        :disabled="!formData.start_at.length || !formData.amount.length || !formData.title.length"
+                        :disabled="!formData.start_at.length || !formData.amount.length || !formData.title.length || disabledButton"
                     >
                 </div>
             </div>
