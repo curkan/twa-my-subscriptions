@@ -1,75 +1,10 @@
-# Nuxt 3 Minimal Starter
+# My subscriptions (TWA)
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Telegram Web App для контроля подписок. Данный репозиторий являются frontend частью приложения.
 
-## Setup
+Я делал данный проект для решения собственной проблемы подписок - они начали списывать деньги слишком часто и слишком много. Изначально, думая, что не буду изобретать велосипед, нашел приложение на телефон. Но когда, добавляй 5-ую подписку, оно мне написало: ``"В бесплатной версии вы не можете добавлять больше 5, оформите подписку и пользуйтесь без ограничений"``, я был очень возмущен, что надо оформить подписку, чтобы добавить подписки :)
 
-Make sure to install the dependencies:
+## Зависимости
 
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- [Backend Laravel](https://github.com/curkan/twa-my-subscriptions-backend)
+- BotFather настроенный бот
