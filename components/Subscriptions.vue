@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { MainButton, useWebApp, useWebAppBackButton, useWebAppBiometricManager, useWebAppPopup } from 'vue-tg'
+import { useWebAppBackButton } from 'vue-tg'
 import {Api} from '~/composables/api/api';
 import type {Subscription} from '~/composables/subscriptions/subscriptions.type';
 
@@ -114,7 +114,6 @@ const routeToCreate = () => {
         </div>
 
     </div>
-    <MainButton text="Добавить подписку" @click.prevent="" />
 </template>
 
 <style lang="scss">
