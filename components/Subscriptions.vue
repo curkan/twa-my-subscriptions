@@ -8,6 +8,10 @@ const subscriptions = ref<Subscription[] | undefined>()
 
 const initData = useState('initData')
 
+const isOpenEdit = ref(false)
+const isOpenDelete = ref(false)
+const deletingElement = ref<Subscription | null>(null)
+
 const result = await Api.get(btoa(initData.value as string), '/common/subscriptions')
 if (result.resp?.value) {
     const resp = result.resp as Ref<ApiResponse<Subscription[]>>
@@ -30,20 +34,24 @@ const dateOptions = {
   day: 'numeric',
 };
 
-const deleting = async (
-    sub: Subscription
-): Promise<void | undefined> => {
-    const result = await Api.delete(btoa(initData.value as string), `/common/subscriptions/${sub.id}`)
+const deleting = async (): Promise<void | undefined> => {
+    if (deletingElement.value === null) {
+        return
+    }
+
+    const result = await Api.delete(btoa(initData.value as string), `/common/subscriptions/${deletingElement.value.id}`)
     const status = result.status
     const error: Ref = result.error
     if (error.value) {
         console.log('error')
         return
     }
-    const index = subscriptions.value?.indexOf(sub)
+    const index = subscriptions.value?.indexOf(deletingElement.value)
     if (index > -1) {
         subscriptions.value?.splice(index, 1)
     }
+
+    isOpenDelete.value = false
 }
 
 const routeToCreate = () => {
@@ -51,15 +59,52 @@ const routeToCreate = () => {
     return navigateTo('/create')
 }
 
+const openModalDeleting = (
+    sub: Subscription
+) => {
+    isOpenDelete.value = true
+    deletingElement.value = sub
+}
+
 </script>
 
 <template>
+    <UModal v-model="isOpenEdit">
+      <div class="p-4">
+        <Placeholder class="h-48" />
+      </div>
+    </UModal>
+
+    <UModal v-model="isOpenDelete">
+      <UCard :ui="{ ring: '', divide: 'divide-y divide-gray-100 dark:divide-gray-800' }">
+        <template #header>
+          <div class="flex items-center justify-between">
+            <h3 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">
+                Подтвердите удаление
+            </h3>
+            <UButton color="gray" variant="ghost" icon="i-heroicons-x-mark-20-solid" class="-my-1" @click="isOpenDelete = false" />
+          </div>
+        </template>
+        <template #footer>
+            <div class="flex items-center justify-center gap-2">
+                <UButton label="Удалить" @click="deleting"/>
+                <UButton label="Отменить" color="red" @click="isOpenDelete = false"/>
+            </div>
+        </template>
+      </UCard>
+    </UModal>
+
     <div class="subs__header">
         <h2>Мои подписки</h2>
-        <div
-            class="subs__header-create"
+          <UButton
+            icon="i-heroicons-plus"
+            size="sm"
+            color="primary"
+            variant="solid"
+            :trailing="false"
             @click="routeToCreate"
-        ></div>
+            class="subs__header-create"
+          />
     </div>
     <div class="subs">
         <div class="subs__wallet">
@@ -98,14 +143,8 @@ const routeToCreate = () => {
                     </SwiperSlide>
                     <SwiperSlide>
                         <div class="subs__content-item-controls">
-                            <!-- <div class="subs__content-item-controls-btn btn-edit">Редактировать</div> -->
-                            <div 
-                                class="subs__content-item-controls-btn btn-warning"
-                                @click="deleting(subscription)"
-
-                            >
-                                Удалить
-                            </div>
+                            <!-- <UButton label="Редактировать" @click="isOpenEdit = true" /> -->
+                            <UButton label="Удалить" color="red" @click="openModalDeleting(subscription)" />
                         </div>
                     </SwiperSlide>
                 </Swiper>

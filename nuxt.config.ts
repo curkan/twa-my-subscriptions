@@ -2,6 +2,8 @@
 export default defineNuxtConfig({
     ssr: false,
     app: {
+        pageTransition : { name : 'page', mode : 'in-out' },
+        layoutTransition : { name : 'layout', mode : 'in-out' },
         head: {
             script: [{ src: 'https://telegram.org/js/telegram-web-app.js' }],
             meta: [
@@ -13,7 +15,7 @@ export default defineNuxtConfig({
     },
     compatibilityDate: '2024-04-03',
     devtools: { enabled: false },
-    modules: ['nuxt-swiper'],
+    modules: ['nuxt-swiper', '@nuxt/ui'],
     runtimeConfig: {
         public: {
             appUrl: process.env.APP_URL,

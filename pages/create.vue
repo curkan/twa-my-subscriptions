@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {useWebAppBackButton} from 'vue-tg';
+import SubscriptionForm from '~/components/SubscriptionForm.vue';
 import {Api} from '~/composables/api/api';
 import type {Subscription} from '~/composables/subscriptions/subscriptions.type';
 
@@ -55,29 +56,8 @@ const formSubmit = async (): Promise<void | undefined> => {
         <h2>Создание подписки</h2>
     </div>
     <div class="subs__create">
-
         <form id="create-form" @submit.prevent="formSubmit()">
-            <div class="subs__create-block">
-                <div class="subs__create-block__line">
-                    <label for="name">Название: </label>
-                    <input id="name" v-model="formData.title" placeholder="Название подписки" />
-                </div>
-                <div class="subs__create-block__line">
-                    <label for="amount">Цена: </label>
-                    <vue-number prefix="₽ " v-model="formData.amount" placeholder="0.00"></vue-number>
-                </div>
-                <div class="subs__create-block__line">
-                    <label for="amount">Дата начала: </label>
-                    <input type="date" v-model="formData.start_at">
-                </div>
-                <div class="subs__create-block__btn">
-                    <input
-                        type="submit"
-                        value="Добавить"
-                        :disabled="!formData.start_at.length || !formData.amount.length || !formData.title.length || disabledButton"
-                    >
-                </div>
-            </div>
+            <SubscriptionForm v-model:post-data="formData" :disabled-button="disabledButton"/>
         </form>
     </div>
 </template>
