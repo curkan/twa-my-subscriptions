@@ -24,5 +24,8 @@ export default defineNuxtConfig({
             testInitData: process.env.AUTH_TEST_USER,
         }
     },
+    experimental: {
+       appManifest: false,
+    },
 
 })
