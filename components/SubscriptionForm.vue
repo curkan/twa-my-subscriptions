@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import {Calendar} from 'v-calendar';
 import type {Subscription} from '~/composables/subscriptions/subscriptions.type';
 
 const subscriptionData = defineModel<Subscription>('postData', {required: true})
+import { format } from 'date-fns'
+
 const props = defineProps<{
   disabledButton: boolean,
 }>()
@@ -20,14 +23,20 @@ const props = defineProps<{
     </div>
     <div class="subs__create-block__line">
         <label for="amount">Дата начала: </label>
-        <input class="dark:bg-slate-800 dark:text-white" type="date" v-model="subscriptionData.start_at">
+          <UPopover :popper="{ placement: 'bottom-start' }">
+            <UButton icon="i-heroicons-calendar-days-20-solid" :label="format(subscriptionData.start_at, 'd MMM, yyy')" />
+
+            <template #panel="{ close }">
+              <DatePicker v-model="subscriptionData.start_at" is-required @close="close" />
+            </template>
+          </UPopover>
     </div>
     <div class="subs__create-block__btn">
         <input
             class="disabled:bg-slate-500"
             type="submit"
             value="Добавить"
-            :disabled="!subscriptionData.start_at.length || !subscriptionData.amount.length || !subscriptionData.title.length || disabledButton"
+            :disabled="!subscriptionData.amount?.length || !subscriptionData.title.length || disabledButton"
         >
     </div>
 </div>

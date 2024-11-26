@@ -15,8 +15,10 @@
     "@coders-tm/vue-number-format": "^3.34.1",
     "@nuxt/ui": "^2.19.2",
     "@nuxtjs/color-mode": "^3.5.2",
+    "date-fns": "^4.1.0",
     "nuxt": "^3.14.1592",
     "nuxt-swiper": "^1.2.2",
+    "v-calendar": "^3.1.2",
     "vue": "latest",
     "vue-tg": "^0.6.1"
   },

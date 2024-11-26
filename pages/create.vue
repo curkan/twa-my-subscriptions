@@ -15,14 +15,14 @@ interface IFormData {
   title: string
   url: string
   amount: Number|null
-  start_at: string
+  start_at: Date
 }
 
 const formData = ref<IFormData>({
     title: '',
     url: '',
     amount: null,
-    start_at: '',
+    start_at: new Date(),
 })
 
 let disabledButton = false
@@ -53,6 +53,12 @@ const formSubmit = async (): Promise<void | undefined> => {
 
 <template>
     <div class="subs__header">
+        <UButton
+            color="gray"
+            variant="ghost"
+            @click="useRouter().go(-1)"
+            icon="i-heroicons-chevron-left-20-solid"
+        ></UButton>
         <h2>Создание подписки</h2>
     </div>
     <div class="subs__create">
