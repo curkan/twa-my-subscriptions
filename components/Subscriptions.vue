@@ -69,6 +69,15 @@ const openModalDeleting = (
 </script>
 
 <template>
+  <div>
+    <h1>Color mode: {{ $colorMode.value }}</h1>
+    <select v-model="$colorMode.preference">
+      <option value="system">System</option>
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+      <option value="sepia">Sepia</option>
+    </select>
+  </div>
     <UModal v-model="isOpenEdit">
       <div class="p-4">
         <Placeholder class="h-48" />
@@ -103,7 +112,7 @@ const openModalDeleting = (
             variant="solid"
             :trailing="false"
             @click="routeToCreate"
-            class="subs__header-create"
+            class="subs__header-create dark:bg-slate-600"
           />
     </div>
     <div class="subs">
@@ -114,7 +123,7 @@ const openModalDeleting = (
 
         <div class="subs__content">
             <div
-                class="subs__content__wrapper"
+                class="subs__content__wrapper dark:bg-slate-800 dark:text-white"
                 v-for="subscription in subscriptions"
             >   
                 <Swiper

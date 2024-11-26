@@ -7,7 +7,7 @@ definePageMeta({
 
 <template>
     <ClientOnly>
-        <Subscriptions/>
+        <Subscriptions />
     </ClientOnly>
 </template>
 

@@ -3,9 +3,9 @@
     margin-top: 15px;
     &-block {
       width: 100%;
-      background-color: #fff;
       padding: 10px;
       border-radius: 10px;
+
       &__line {
         padding: 10px;
         display: flex;
@@ -44,7 +44,7 @@
           border-radius: 5px;
 
           &:disabled {
-            background-color: #eee;
+
           }
         }
         

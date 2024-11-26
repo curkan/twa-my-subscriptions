@@ -11,11 +11,14 @@ export default defineNuxtConfig({
                     name: 'viewport', content: 'user-scalable=no, width=device-width, initial-scale=1'
                 }
             ],
+            bodyAttrs: {
+                class: 'p-4',
+            },
         },
     },
     compatibilityDate: '2024-04-03',
     devtools: { enabled: false },
-    modules: ['nuxt-swiper', '@nuxt/ui'],
+    modules: ['nuxt-swiper', '@nuxt/ui', '@nuxtjs/color-mode'],
     runtimeConfig: {
         public: {
             appUrl: process.env.APP_URL,
