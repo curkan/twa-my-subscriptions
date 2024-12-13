@@ -1,10 +1,39 @@
-# My subscriptions (TWA)
+# my-subs
 
-Telegram Web App для контроля подписок. Данный репозиторий являются frontend частью приложения.
+This template should help get you started developing with Vue 3 in Vite.
 
-Я делал данный проект для решения собственной проблемы подписок - они начали списывать деньги слишком часто и слишком много. Изначально, думая, что не буду изобретать велосипед, нашел приложение на телефон. Но когда, добавляй 5-ую подписку, оно мне написало: ``"В бесплатной версии вы не можете добавлять больше 5, оформите подписку и пользуйтесь без ограничений"``, я был очень возмущен, что надо оформить подписку, чтобы добавить подписки :)
+## Recommended IDE Setup
 
-## Зависимости
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-- [Backend Laravel](https://github.com/curkan/twa-my-subscriptions-backend)
-- BotFather настроенный бот
+## Type Support for `.vue` Imports in TS
+
+TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+
+## Customize configuration
+
+See [Vite Configuration Reference](https://vite.dev/config/).
+
+## Project Setup
+
+```sh
+pnpm install
+```
+
+### Compile and Hot-Reload for Development
+
+```sh
+pnpm dev
+```
+
+### Type-Check, Compile and Minify for Production
+
+```sh
+pnpm build
+```
+
+### Lint with [ESLint](https://eslint.org/)
+
+```sh
+pnpm lint
+```
