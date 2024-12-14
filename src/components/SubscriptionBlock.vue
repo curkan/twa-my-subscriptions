@@ -2,14 +2,26 @@
 import { showDialog } from "vant";
 import IconDelete from "./icons/IconDelete.vue";
 import IconEdit from "./icons/IconEdit.vue";
+import type { ISubscription } from "@/composables/types/subscription.type";
+import type { PropType } from "vue";
+import { useDeleteSub } from "@/composables/main/useDeleteSub";
 
-const close = () => {
+const emit = defineEmits(["deleteSubscription"]);
+
+const props = defineProps({
+  subscription: { type: Object as PropType<ISubscription>, required: true },
+});
+
+const deleteSub = (subscriptionId: number) => {
   showDialog({
     title: "Вы уверены?",
     showConfirmButton: true,
     showCancelButton: true,
   })
     .then(() => {
+      useDeleteSub(subscriptionId).then(() => {
+        emit("deleteSubscription", subscriptionId);
+      });
       // on confirm
     })
     .catch(() => {
@@ -23,13 +35,27 @@ const close = () => {
     <van-swipe-cell>
       <div class="subscription-card">
         <div class="left">
-          <div class="line name">Ainox</div>
-          <div class="line card">**** **** **** 2312</div>
-          <div class="line date">16 июля 2024 г.</div>
+          <div class="line name">{{ subscription?.title }}</div>
+          <div class="line card" v-if="subscription.pan">
+            **** **** **** {{ subscription.pan }}
+          </div>
+          <div class="line date">
+            {{ new Date(subscription.start_at).toLocaleDateString("ru") }}
+          </div>
         </div>
         <div class="right">
-          <div class="line amount">2.290,00 ₽</div>
-          <div class="line period">Ежемесячно</div>
+          <div class="line amount">
+            <vue-number
+              suffix=" ₽"
+              separator=" "
+              v-model="subscription.amount"
+              placeholder="0.00"
+              readonly
+            ></vue-number>
+          </div>
+          <div class="line period">
+            {{ $t(`period.${subscription?.period}`) }}
+          </div>
         </div>
       </div>
       <template #right>
@@ -37,7 +63,7 @@ const close = () => {
           <IconEdit />
         </van-button>
         <van-button
-          @click="close"
+          @click="deleteSub(subscription.id)"
           square
           type="danger"
           class="button right-button"

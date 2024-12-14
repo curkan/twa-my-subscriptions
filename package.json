@@ -13,9 +13,12 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@coders-tm/vue-number-format": "^3.35.2",
     "@types/telegram-web-app": "^7.10.1",
     "@vant/auto-import-resolver": "^1.2.1",
     "@vant/touch-emulator": "^1.4.0",
+    "axios": "^1.7.9",
+    "jsdom": "^25.0.1",
     "pinia": "^2.2.6",
     "sass": "^1.83.0",
     "sass-loader": "^16.0.4",
@@ -23,6 +26,7 @@
     "unplugin-vue-components": "^0.27.5",
     "vant": "^4.9.10",
     "vue": "^3.5.13",
+    "vue-i18n": "^10.0.5",
     "vue-router": "^4.4.5",
     "vue-tg": "^0.8.0"
   },

@@ -1,5 +1,10 @@
 <script setup lang="ts">
+import {
+  useCreateSub,
+  type ICreateSubscriptionData,
+} from "@/composables/main/useCreateSub";
 import router from "@/router";
+import { showSuccessToast, showToast } from "vant";
 import { onMounted, ref } from "vue";
 import { useWebAppBackButton } from "vue-tg";
 
@@ -7,6 +12,7 @@ const showCardNumber = ref(false);
 const showAmountNumber = ref(false);
 const numberCard = ref();
 const numberAmount = ref();
+const title = ref<string>();
 const period = ref("Ежемесячно");
 const pickerValue = ref(["Monthly"]);
 const showPicker = ref(false);
@@ -21,11 +27,30 @@ const pickerValueStartDate = ref();
 const { onBackButtonClicked } = useWebAppBackButton();
 const { hideBackButton } = useWebAppBackButton();
 
+const onClickCreate = () => {
+  useCreateSub({
+    amount: numberAmount.value as number,
+    title: title.value,
+    start_at: pickerValueStartDate.value.join("-"),
+    period: pickerValue.value[0],
+    pan: numberCard.value,
+  })
+    .then(() => {
+      showSuccessToast("Успешно создано");
+      hideBackButton();
+      router.replace("/");
+    })
+    .catch((error) => {
+      showToast(error);
+    });
+};
+
 const onConfirmPicker = ({ selectedValues, selectedOptions }) => {
   period.value = selectedOptions[0]?.text;
   pickerValue.value = selectedValues;
   showPicker.value = false;
 };
+
 const onConfirmStartDate = ({ selectedValues, selectedOptions }) => {
   startDate.value = selectedValues.join(".");
   pickerValueStartDate.value = selectedValues;
@@ -50,7 +75,9 @@ onBackButtonClicked(() => {
     <van-cell-group title="Добавление подписки" :border="false" inset>
       <van-field
         name="displayName"
+        v-model="title"
         :label="'Название'"
+        required
         placeholder="Название подписки"
         :rules="[{ required: true, message: 'Название подписки обязательное' }]"
       />
@@ -67,6 +94,7 @@ onBackButtonClicked(() => {
 
       <van-field
         v-model="period"
+        required
         is-link
         readonly
         name="picker"
@@ -88,6 +116,7 @@ onBackButtonClicked(() => {
         type="number"
         readonly
         clickable
+        required
         @touchstart.stop="showAmountNumber = true"
         label="Сумма"
         placeholder="Сумма в рублях"
@@ -98,8 +127,9 @@ onBackButtonClicked(() => {
         is-link
         readonly
         name="datePicker"
-        label="Дата начала"
-        placeholder="Выберите дату начала"
+        label="Дата оплаты"
+        placeholder="Выберите дату оплаты"
+        required
         @click="showPickerStartDate = true"
       />
       <van-popup
@@ -118,7 +148,13 @@ onBackButtonClicked(() => {
       </van-popup>
     </van-cell-group>
     <div style="margin: 16px">
-      <van-button round block type="primary" native-type="submit">
+      <van-button
+        round
+        block
+        type="primary"
+        native-type="submit"
+        @click="onClickCreate"
+      >
         Создать
       </van-button>
     </div>

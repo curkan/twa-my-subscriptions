@@ -27,7 +27,7 @@ watch(currentMode, (newMode) => {
     document.documentElement.setAttribute("data-theme", newMode);
   }
 
-  var style = getComputedStyle(document.body);
+  const style = getComputedStyle(document.body);
   const mainColor = style.getPropertyValue("--color-background-soft");
 
   window.Telegram.WebApp.setHeaderColor(mainColor);

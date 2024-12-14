@@ -32,6 +32,10 @@
   }
 
   .right {
+    .line,
+    input {
+      text-align: right;
+    }
     .amount {
       font-weight: bold;
     }

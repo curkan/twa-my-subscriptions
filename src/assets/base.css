@@ -47,6 +47,8 @@
   --van-button-danger-border-color: var(--vt-c-red);
   --van-button-primary-background: var(--vt-c-blue);
   --van-button-primary-border-color: var(--vt-c-blue);
+  --van-toast-text-color: var(--color-text);
+  --van-skeleton-paragraph-height: 80px;
 }
 
 html[data-theme="dark"] {
@@ -107,4 +109,8 @@ body {
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
+}
+
+input {
+  background: var(--color-background);
 }

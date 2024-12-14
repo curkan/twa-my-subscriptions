@@ -2,9 +2,10 @@
 import { RouterView } from "vue-router";
 import { useThemeStore } from "./stores/themeStore";
 import { onMounted } from "vue";
+import { useAuth } from "./composables/auth/auth";
 
-onMounted(() => {
-  var style = getComputedStyle(document.body);
+onMounted(async () => {
+  const style = getComputedStyle(document.body);
   const mainColor = style.getPropertyValue("--color-background-soft");
 
   window.Telegram.WebApp.setHeaderColor(mainColor);
@@ -16,6 +17,8 @@ onMounted(() => {
   if (window.Telegram.WebApp.isVersionAtLeast("8.0")) {
     // window.Telegram.WebApp.requestFullscreen()
   }
+
+  await useAuth();
 });
 </script>
 
