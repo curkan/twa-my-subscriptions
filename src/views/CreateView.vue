@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import router from "@/router";
+import { onMounted, ref } from "vue";
+import { useWebAppBackButton } from "vue-tg";
 
 const showCardNumber = ref(false);
 const showAmountNumber = ref(false);
@@ -16,6 +18,8 @@ const columnsPeriod = [
 ];
 const startDate = ref();
 const pickerValueStartDate = ref();
+const { onBackButtonClicked } = useWebAppBackButton();
+const { hideBackButton } = useWebAppBackButton();
 
 const onConfirmPicker = ({ selectedValues, selectedOptions }) => {
   period.value = selectedOptions[0]?.text;
@@ -30,6 +34,15 @@ const onConfirmStartDate = ({ selectedValues, selectedOptions }) => {
 
 const minDate = new Date(2015, 0, 1);
 const maxDate = new Date();
+
+onMounted(() => {
+  useWebAppBackButton().showBackButton();
+});
+
+onBackButtonClicked(() => {
+  hideBackButton();
+  router.replace("/");
+});
 </script>
 
 <template>

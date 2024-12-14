@@ -1,7 +1,20 @@
 <script setup lang="ts">
 import ThemeSwitcher from "@/components/ThemeSwitcher.vue";
-import { ref } from "vue";
+import router from "@/router";
+import { onMounted, ref } from "vue";
+import { useWebAppBackButton } from "vue-tg";
 const checked = ref(true);
+const { onBackButtonClicked } = useWebAppBackButton();
+const { hideBackButton } = useWebAppBackButton();
+
+onMounted(() => {
+  useWebAppBackButton().showBackButton();
+});
+
+onBackButtonClicked(() => {
+  hideBackButton();
+  router.replace("/");
+});
 </script>
 
 <template>

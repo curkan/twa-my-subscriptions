@@ -27,6 +27,14 @@ watch(currentMode, (newMode) => {
     document.documentElement.setAttribute("data-theme", newMode);
   }
 
+  var style = getComputedStyle(document.body);
+  const mainColor = style.getPropertyValue("--color-background-soft");
+
+  window.Telegram.WebApp.setHeaderColor(mainColor);
+  window.Telegram.WebApp.setBackgroundColor(mainColor);
+  window.Telegram.WebApp.setBottomBarColor(mainColor);
+  window.Telegram.WebApp.setBottomBarColor(mainColor);
+
   localStorage.setItem("theme", currentTheme.value);
   localStorage.setItem("theme-mode", newMode);
 });

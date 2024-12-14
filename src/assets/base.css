@@ -70,6 +70,12 @@ html[data-theme="dark"] {
 }
 
 body {
+  padding-top: calc(
+    var(--tg-safe-area-inset-top) + var(--tg-content-safe-area-inset-top)
+  );
+  min-height: var(--tg-viewport-stable-height);
+  max-height: var(--tg-viewport-stable-height);
+  height: var(--tg-viewport-stable-height);
   min-height: 100vh;
   line-height: 1;
   -ms-text-size-adjust: 100%;

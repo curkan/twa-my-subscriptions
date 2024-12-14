@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Ads from "@/components/Ads.vue";
 import ButtonsMenu from "@/components/ButtonsMenu.vue";
 import Header from "@/components/Header.vue";
 import Subscriptions from "@/components/Subscriptions.vue";
@@ -8,6 +9,7 @@ import Subscriptions from "@/components/Subscriptions.vue";
   <main>
     <Header />
     <ButtonsMenu />
+    <Ads />
     <Subscriptions />
   </main>
 </template>

@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@types/telegram-web-app':
+        specifier: ^7.10.1
+        version: 7.10.1
       '@vant/auto-import-resolver':
         specifier: ^1.2.1
         version: 1.2.1
@@ -38,6 +41,9 @@ importers:
       vue-router:
         specifier: ^4.4.5
         version: 4.5.0(vue@3.5.13(typescript@5.6.3))
+      vue-tg:
+        specifier: ^0.8.0
+        version: 0.8.0(vue@3.5.13(typescript@5.6.3))
     devDependencies:
       '@tsconfig/node22':
         specifier: ^22.0.0
@@ -664,6 +670,9 @@ packages:
 
   '@types/node@22.9.3':
     resolution: {integrity: sha512-F3u1fs/fce3FFk+DAxbxc78DF8x0cY09RRL8GnXLmkJ1jvx3TtPdWoTT5/NiYfI5ASqXBmfqJi9dZ3gxMx4lzw==}
+
+  '@types/telegram-web-app@7.10.1':
+    resolution: {integrity: sha512-GKL659G6lnHRAt3Dt7L1Fa0dwvc+ZZQtJcYrJVJGwjvsbi/Rcp1qKs9pFwb34/KC04+J+TlQj4D7yKo10sBSEw==}
 
   '@typescript-eslint/eslint-plugin@8.18.0':
     resolution: {integrity: sha512-NR2yS7qUqCL7AIxdJUQf2MKKNDVNaig/dEB0GBLU7D+ZdHgK1NoH/3wsgO3OnPVipn51tG3MAwaODEGil70WEw==}
@@ -1865,6 +1874,11 @@ packages:
     peerDependencies:
       vue: ^3.2.0
 
+  vue-tg@0.8.0:
+    resolution: {integrity: sha512-0DwRLrxtoOn7iCuEx0+GDHy5vSJPgbqJrEpE8QgRTJbLFI6ogP9jzG58pS8gXbntb3rqqWepxGwUJMn95MqP1g==}
+    peerDependencies:
+      vue: ^3
+
   vue-tsc@2.1.10:
     resolution: {integrity: sha512-RBNSfaaRHcN5uqVqJSZh++Gy/YUzryuv9u1aFWhsammDJXNtUiJMNoJ747lZcQ68wUQFx6E73y4FY3D8E7FGMA==}
     hasBin: true
@@ -2415,6 +2429,8 @@ snapshots:
   '@types/node@22.9.3':
     dependencies:
       undici-types: 6.19.8
+
+  '@types/telegram-web-app@7.10.1': {}
 
   '@typescript-eslint/eslint-plugin@8.18.0(@typescript-eslint/parser@8.18.0(eslint@9.16.0(jiti@2.4.0))(typescript@5.6.3))(eslint@9.16.0(jiti@2.4.0))(typescript@5.6.3)':
     dependencies:
@@ -3673,6 +3689,11 @@ snapshots:
   vue-router@4.5.0(vue@3.5.13(typescript@5.6.3)):
     dependencies:
       '@vue/devtools-api': 6.6.4
+      vue: 3.5.13(typescript@5.6.3)
+
+  vue-tg@0.8.0(vue@3.5.13(typescript@5.6.3)):
+    dependencies:
+      '@types/telegram-web-app': 7.10.1
       vue: 3.5.13(typescript@5.6.3)
 
   vue-tsc@2.1.10(typescript@5.6.3):
