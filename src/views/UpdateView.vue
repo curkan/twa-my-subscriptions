@@ -67,7 +67,7 @@ const onClickUpdate = () => {
       router.push("/");
     })
     .catch((error) => {
-      showToast("Произошла ошибка.");
+      showToast("Произошла ошибка." + error);
     });
 };
 </script>
