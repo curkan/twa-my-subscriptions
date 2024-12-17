@@ -2,12 +2,16 @@
 import { useGetSubsData } from "@/composables/main/useGetSubsData";
 import SubscriptionBlock from "./SubscriptionBlock.vue";
 import type { ISubscription } from "@/composables/types/subscription.type";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
+import SubscriptionBlockEmpty from "./SubscriptionBlockEmpty.vue";
 const subscriptionsLoaded = ref(false);
 const subscriptions = ref<ISubscription[]>();
-useGetSubsData().then((response) => {
-  subscriptions.value = response;
-  subscriptionsLoaded.value = true;
+
+onMounted(() => {
+  useGetSubsData().then((response) => {
+    subscriptions.value = response;
+    subscriptionsLoaded.value = true;
+  });
 });
 
 const deleteSubscriptionEmit = (subscriptionId: number) => {
@@ -32,6 +36,9 @@ const deleteSubscriptionEmit = (subscriptionId: number) => {
         />
       </div>
     </TransitionGroup>
+    <SubscriptionBlockEmpty
+      v-if="subscriptionsLoaded === true && subscriptions?.length == 0"
+    />
   </div>
 </template>
 

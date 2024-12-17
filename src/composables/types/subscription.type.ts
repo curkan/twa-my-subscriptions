@@ -7,8 +7,9 @@ export interface ISubscription {
   period: EPeriod;
   pan?: string;
 }
+
 export enum EPeriod {
-  Annually = "annually",
-  Monthly = "monthly",
-  Weekly = "weekly",
+  annually = "annually",
+  monthly = "monthly",
+  weekly = "weekly",
 }

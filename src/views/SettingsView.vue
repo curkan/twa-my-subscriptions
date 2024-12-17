@@ -1,19 +1,32 @@
 <script setup lang="ts">
 import ThemeSwitcher from "@/components/ThemeSwitcher.vue";
+import { useAuth } from "@/composables/auth/auth";
+import { useUpdateUser } from "@/composables/auth/useUpdateUser";
 import router from "@/router";
-import { onMounted, ref } from "vue";
+import { useUserStore } from "@/stores/useUserStore";
+import { onMounted, ref, watch } from "vue";
 import { useWebAppBackButton } from "vue-tg";
 const checked = ref(true);
 const { onBackButtonClicked } = useWebAppBackButton();
 const { hideBackButton } = useWebAppBackButton();
 
-onMounted(() => {
+onMounted(async () => {
+  await useAuth();
   useWebAppBackButton().showBackButton();
+  checked.value = Boolean(useUserStore().authUser?.settings.notify_to_bot);
+
+  watch(checked, () => {
+    useUpdateUser({
+      settings: {
+        notify_to_bot: checked.value,
+      },
+    });
+  });
 });
 
 onBackButtonClicked(() => {
   hideBackButton();
-  router.replace("/");
+  router.push("/");
 });
 </script>
 

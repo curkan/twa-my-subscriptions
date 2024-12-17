@@ -5,6 +5,7 @@ import IconEdit from "./icons/IconEdit.vue";
 import type { ISubscription } from "@/composables/types/subscription.type";
 import type { PropType } from "vue";
 import { useDeleteSub } from "@/composables/main/useDeleteSub";
+import router from "@/router";
 
 const emit = defineEmits(["deleteSubscription"]);
 
@@ -59,7 +60,12 @@ const deleteSub = (subscriptionId: number) => {
         </div>
       </div>
       <template #right>
-        <van-button square type="primary" class="button">
+        <van-button
+          square
+          type="primary"
+          class="button"
+          @click="router.replace(`/update/${subscription.id}`)"
+        >
           <IconEdit />
         </van-button>
         <van-button

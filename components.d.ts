@@ -18,6 +18,8 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SubscriptionBlock: typeof import('./src/components/SubscriptionBlock.vue')['default']
+    SubscriptionBlockEmpty: typeof import('./src/components/SubscriptionBlockEmpty.vue')['default']
+    SubscriptionForm: typeof import('./src/components/forms/SubscriptionForm.vue')['default']
     Subscriptions: typeof import('./src/components/Subscriptions.vue')['default']
     ThemeSwitcher: typeof import('./src/components/ThemeSwitcher.vue')['default']
     VanButton: typeof import('vant/es')['Button']

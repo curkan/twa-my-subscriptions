@@ -47,8 +47,12 @@
   --van-button-danger-border-color: var(--vt-c-red);
   --van-button-primary-background: var(--vt-c-blue);
   --van-button-primary-border-color: var(--vt-c-blue);
-  --van-toast-text-color: var(--color-text);
+  /* --van-toast-text-color: var(--color-text); */
   --van-skeleton-paragraph-height: 80px;
+
+  .van-toast {
+    background: var(--van-toast-background);
+  }
 }
 
 html[data-theme="dark"] {

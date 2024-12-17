@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router";
 import { useThemeStore } from "./stores/themeStore";
-import { onMounted } from "vue";
+import { onBeforeMount, onMounted } from "vue";
 import { useAuth } from "./composables/auth/auth";
+
+onBeforeMount(async () => {
+  await useAuth();
+});
 
 onMounted(async () => {
   const style = getComputedStyle(document.body);
@@ -17,8 +21,6 @@ onMounted(async () => {
   if (window.Telegram.WebApp.isVersionAtLeast("8.0")) {
     // window.Telegram.WebApp.requestFullscreen()
   }
-
-  await useAuth();
 });
 </script>
 
