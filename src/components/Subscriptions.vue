@@ -4,6 +4,7 @@ import SubscriptionBlock from "./SubscriptionBlock.vue";
 import type { ISubscription } from "@/composables/types/subscription.type";
 import { onMounted, ref } from "vue";
 import SubscriptionBlockEmpty from "./SubscriptionBlockEmpty.vue";
+import { useSubsStore } from "@/stores/useSubsStore";
 const subscriptionsLoaded = ref(false);
 const subscriptions = ref<ISubscription[]>();
 
@@ -11,6 +12,7 @@ onMounted(() => {
   useGetSubsData().then((response) => {
     subscriptions.value = response;
     subscriptionsLoaded.value = true;
+    useSubsStore().subscriptions = subscriptions.value;
   });
 });
 
