@@ -52,7 +52,6 @@ onMounted(() => {
 });
 
 const onClickUpdate = () => {
-  console.log(pickerValueStartDate.value.join("-"));
   useUpdateSub({
     id: Number(subscriptionId.value),
     amount: numberAmount.value as number,

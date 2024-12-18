@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useCreateSub } from "@/composables/main/useCreateSub";
 import router from "@/router";
-import { showSuccessToast, showToast } from "vant";
+import { showLoadingToast, showSuccessToast, showToast } from "vant";
 import { onMounted, ref } from "vue";
 import { useWebAppBackButton } from "vue-tg";
 
@@ -14,8 +14,12 @@ const startDate = ref();
 const pickerValueStartDate = ref();
 const { onBackButtonClicked } = useWebAppBackButton();
 const { hideBackButton } = useWebAppBackButton();
+const createdClick = ref(false);
 
 const onClickCreate = () => {
+  createdClick.value = true;
+  showLoadingToast("Идет создание");
+
   useCreateSub({
     amount: numberAmount.value as number,
     title: String(title.value),
@@ -25,10 +29,12 @@ const onClickCreate = () => {
   })
     .then(() => {
       showSuccessToast("Успешно создано");
+      createdClick.value = false;
       hideBackButton();
       router.push("/");
     })
     .catch((error) => {
+      createdClick.value = false;
       showToast(error);
     });
 };
@@ -61,6 +67,7 @@ onBackButtonClicked(() => {
         type="primary"
         native-type="submit"
         @click="onClickCreate"
+        :disabled="createdClick"
       >
         Создать
       </van-button>

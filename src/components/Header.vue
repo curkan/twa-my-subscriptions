@@ -1,15 +1,25 @@
 <script setup lang="ts">
-import type { ISubscription } from "@/composables/types/subscription.type";
 import { useSubsStore } from "@/stores/useSubsStore";
 import { computed, type PropType } from "vue";
 
 const totalAmount = computed(() => {
   if (!useSubsStore().subscriptions) return 0;
-  const total = useSubsStore().subscriptions.reduce(
-    (acc, subscription) => acc + parseFloat(subscription.amount),
-    0,
-  );
-  return total.toLocaleString("ru-RU", {
+
+  const total = useSubsStore().subscriptions?.reduce((acc, subscription) => {
+    let amount = parseFloat(String(subscription.amount));
+    switch (subscription.period) {
+      case "monthly":
+        return acc + amount;
+      case "weekly":
+        return acc + amount * 4;
+      case "annually":
+        return acc + amount / 12;
+      default:
+        return acc;
+    }
+  }, 0);
+
+  return total?.toLocaleString("ru-RU", {
     style: "currency",
     currency: "RUB",
     minimumFractionDigits: 2,
