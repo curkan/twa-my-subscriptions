@@ -22,6 +22,7 @@ const startDate = ref();
 const pickerValueStartDate = ref();
 
 onMounted(() => {
+  useWebAppBackButton().showBackButton();
   subscriptionId.value = Number(route.params.id);
   useGetSubData(subscriptionId.value).then((response) => {
     numberCard.value = response?.pan;
