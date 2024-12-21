@@ -9,6 +9,7 @@ import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useWebAppBackButton } from "vue-tg";
 const { hideBackButton } = useWebAppBackButton();
+const { onBackButtonClicked } = useWebAppBackButton();
 
 const route = useRoute();
 const subscriptionId = ref<number>();
@@ -70,6 +71,12 @@ const onClickUpdate = () => {
       showToast("Произошла ошибка." + error);
     });
 };
+
+onBackButtonClicked(() => {
+  hideBackButton();
+  router.push("/");
+});
+
 </script>
 
 <template>
