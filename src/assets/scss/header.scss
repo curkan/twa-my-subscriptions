@@ -1,0 +1,18 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  .line {
+    font-size: 16px;
+  }
+  .amount {
+    font-size: 36px;
+    font-weight: bold;
+    span {
+      font-weight: bold;
+      color: var(--color-text-gray);
+    }
+  }
+}
